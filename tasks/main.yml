@@ -1,0 +1,7 @@
+---
+- include_tasks: zookeeper_install.yml
+
+- block: # Config zookeeper
+  - include_tasks: zookeeper_post.yml
+  tags:
+    - zookeeper-config
