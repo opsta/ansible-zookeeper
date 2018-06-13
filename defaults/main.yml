@@ -1,3 +1,12 @@
 ---
 zookeeper_apt_package: zookeeperd
-zookeeper_all_in_one: false
+
+zookeeper_config_file_path: /etc/zookeeper/conf/zoo.cfg
+zookeeper_id_file_path: /etc/zookeeper/conf/myid
+zookeeper_data_dir: /var/lib/zookeeper
+
+zookeeper_host_count: "{{ ansible_play_hosts | length }}"
+zookeeper_standalone: "{{ (zookeeper_host_count > 1) | ternary(false, true) }}"
+zookeeper_client_port: 2181
+zookeeper_follower_port: 2888
+zookeeper_leader_port: 3888
