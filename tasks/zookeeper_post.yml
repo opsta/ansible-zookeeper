@@ -1,1 +1,12 @@
 ---
+- name: Drop Zookeeper zoo.cfg configuartion file
+  template:
+    src: zoo.cfg.j2
+    dest: "{{ zookeeper_config_file_path }}"
+  notify: Restart Zookeeper
+
+- name: Drop Zookeeper myid file
+  template:
+    src: myid.j2
+    dest: "{{ zookeeper_id_file_path }}"
+  notify: Restart Zookeeper
